@@ -7,6 +7,13 @@ module.exports = {
       colors: {
         primary: "#0A2540",
       },
+      fontFamily: {
+        figtree: ["Figtree_400Regular", "sans-serif"],
+        "figtree-medium": ["Figtree_500Medium", "sans-serif"],
+        "figtree-semibold": ["Figtree_600SemiBold", "sans-serif"],
+        "figtree-bold": ["Figtree_700Bold", "sans-serif"],
+        "figtree-extrabold": ["Figtree_800ExtraBold", "sans-serif"],
+      },
     },
   },
   plugins: [],
