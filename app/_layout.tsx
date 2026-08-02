@@ -1,3 +1,5 @@
+import Sidebar from "@/components/layouts/sidebar";
+import TopNav from "@/components/layouts/top-nav";
 import {
   Figtree_400Regular,
   Figtree_500Medium,
@@ -10,8 +12,6 @@ import { Slot } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { View } from "react-native";
-import { Sidebar } from "../components/layouts/sidebar";
-import { TopNav } from "../components/layouts/top-nav";
 import "./global.css";
 
 SplashScreen.preventAutoHideAsync();

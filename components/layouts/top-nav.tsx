@@ -1,7 +1,7 @@
 import { Bell, Search, Wifi } from "lucide-react-native";
 import { Platform, Pressable, Text, TextInput, View } from "react-native";
 
-export function TopNav() {
+export default function TopNav() {
   return (
     <View className="h-[88px] bg-white border-b border-gray-100 flex-row items-center justify-between px-8">
       <View>

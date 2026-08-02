@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { Image } from "expo-image";
 import { usePathname } from "expo-router";
 import {
@@ -36,7 +37,7 @@ const MENU_ITEMS = [
   },
 ];
 
-export function Sidebar() {
+export default function Sidebar() {
   const pathname = usePathname();
 
   return (
@@ -63,7 +64,10 @@ export function Sidebar() {
           return (
             <Pressable
               key={item.name}
-              className={`flex-row items-center gap-3 px-4 py-3 rounded-xl mb-1 ${isActive ? "bg-[#F2F5F8]" : ""}`}
+              className={cn(
+                "flex-row items-center gap-3 px-4 py-3 rounded-xl mb-1",
+                isActive && "bg-[#F2F5F8]",
+              )}
             >
               <Icon
                 size={20}
@@ -71,7 +75,12 @@ export function Sidebar() {
                 strokeWidth={isActive ? 2.5 : 2}
               />
               <Text
-                className={`font-medium ${isActive ? "text-primary font-figtree-semibold" : "text-[#8A94A6] font-figtree-medium"}`}
+                className={cn(
+                  "font-medium",
+                  isActive
+                    ? "text-primary font-figtree-semibold"
+                    : "text-[#8A94A6] font-figtree-medium",
+                )}
               >
                 {item.name}
               </Text>
@@ -83,7 +92,7 @@ export function Sidebar() {
       <View className="px-4 py-3 border-t border-gray-100">
         <Pressable className="flex-row items-center gap-3 px-4 py-3">
           <LogOut size={20} color="#E02424" />
-          <Text className="text-[#E02424] font-medium">Sign out</Text>
+          <Text className="text-[#E02424] font-figtree-medium">Sign out</Text>
         </Pressable>
       </View>
     </View>
