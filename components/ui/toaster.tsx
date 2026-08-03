@@ -1,13 +1,13 @@
 import Toast, {
-  BaseToast,
   ErrorToast,
+  SuccessToast,
   ToastConfig,
   ToastProps,
 } from "react-native-toast-message";
 
 const toastConfig: ToastConfig = {
   success: (props) => (
-    <BaseToast
+    <SuccessToast
       {...props}
       text1Style={{
         fontFamily: "Figtree_400Regular",
