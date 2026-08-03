@@ -14,8 +14,16 @@ import {
   Package,
   Users,
   Volleyball,
+  X,
 } from "lucide-react-native";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import {
+  Modal,
+  Pressable,
+  ScrollView,
+  Text,
+  View,
+  useWindowDimensions,
+} from "react-native";
 
 const MENU_ITEMS = [
   { name: "Dashboard", icon: LayoutDashboard, route: "/dashboard" },
@@ -37,19 +45,39 @@ const MENU_ITEMS = [
   },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({
+  isOpen = false,
+  onClose,
+}: {
+  isOpen?: boolean;
+  onClose?: () => void;
+}) {
   const pathname = usePathname();
+  const { width } = useWindowDimensions();
+  const isMobile = width < 1024;
 
-  return (
-    <View className="w-[260px] bg-white border-r border-gray-100 flex-col h-[85%]">
-      <View className="px-6 py-6 border-b border-gray-100 justify-center">
-        <Image
-          source={require("../../assets/images/caspaa.svg")}
-          style={{ width: 140, height: 32 }}
-        />
-        <Text className="text-gray-400 text-xs mt-2 font-figtree">
-          School Proprietor
-        </Text>
+  const SidebarContent = (
+    <View
+      className={cn(
+        "bg-white border-r border-gray-100 flex-col h-full",
+        isMobile ? "w-[280px]" : "w-[260px]",
+      )}
+    >
+      <View className="px-6 py-6 border-b border-gray-100 flex-row items-center justify-between">
+        <View>
+          <Image
+            source={require("../../assets/images/caspaa.svg")}
+            style={{ width: 140, height: 32 }}
+          />
+          <Text className="text-gray-400 text-xs mt-2 font-figtree">
+            School Proprietor
+          </Text>
+        </View>
+        {isMobile && (
+          <Pressable onPress={onClose} className="p-2 -mr-2">
+            <X size={20} color="#8A94A6" />
+          </Pressable>
+        )}
       </View>
 
       <ScrollView
@@ -97,4 +125,17 @@ export default function Sidebar() {
       </View>
     </View>
   );
+
+  if (isMobile) {
+    return (
+      <Modal visible={isOpen} transparent animationType="fade">
+        <View className="flex-1 bg-black/40 flex-row">
+          {SidebarContent}
+          <Pressable className="flex-1" onPress={onClose} />
+        </View>
+      </Modal>
+    );
+  }
+
+  return SidebarContent;
 }
