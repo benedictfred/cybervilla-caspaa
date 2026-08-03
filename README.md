@@ -1,56 +1,33 @@
-# Welcome to your Expo app 👋
+# Cybervilla Interview Coding Test: CASPAA PROJECT
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This repository contains the implementation of the Student Management Dashboard as requested for the Cybervilla interview assessment. The module was built with a strong focus on responsiveness, data integrity, and a premium user experience across all viewports.
 
-## Get started
+## Core Features Delivered
 
-1. Install dependencies
+### 1. Student Roster & Data Management
 
-   ```bash
-   npm install
-   ```
+- **Interactive Data Table**: A highly responsive table displaying student records, including calculated attributes such as age (derived from Date of Birth) and dynamic status badges (Active, Suspended, Withdrawn, Deactivated).
+- **Advanced Filtering & Search**: Client-side filtering architecture allowing real-time searches by student name and admission number. Dropdown filters support intersecting queries by Class and Status.
+- **Pagination**: Client-side pagination limiting the view to 10 rows per page to maintain performance, with dynamic boundary controls and auto-reset triggers when search queries or filters are modified.
+- **Responsive Table Layout**: Implemented specialized scroll-view wrappers for mobile and tablet devices to prevent horizontal column squishing, ensuring the tabular data remains readable and fully swipeable on smaller screens.
 
-2. Start the app
+### 2. Comprehensive Student Lifecycle Forms
 
-   ```bash
-   npx expo start
-   ```
+- **Single Entry Modal**: Built a robust `AddStudentModal` for manual entry. The form captures extensive demographic data, parent linkages, and billing factors (like fee categories and dynamic extracurricular toggles).
+- **Zod Validation**: Strict schema validation guarantees data integrity, including checks to completely prevent the registration of duplicate admission numbers against existing records.
+- **Custom DatePicker Component**: Abstracted a reusable date selection UI over `react-native-calendars`. The custom component utilizes a specialized header architecture offering dedicated Year and Month pickers to solve the UX friction of deep historical date selection (e.g., birth dates).
 
-In the output, you'll find options to open the app in a
+### 3. Bulk CSV Upload Pipeline
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- **Seamless Migration Tool**: Engineered a multi-step `BulkUploadModal` using PapaParse to ingest `.csv` spreadsheets.
+- **Pre-import Validation Staging**: Before any data hits the state array, the pipeline validates every row against the primary Zod schema and cross-references existing admission numbers.
+- **Error Transparency**: Admins are presented with a staging preview highlighting the exact errors per row (e.g., missing required fields, duplicated admission strings). Only explicitly valid rows are committed to the system.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### 4. Adaptive Layout Architecture
 
-## Get a fresh project
+- **Navigation Systems**: Built a fully responsive shell. On desktop, a persistent sidebar anchors the application. On viewports below 1024px, the layout smoothly collapses into a mobile-first TopNav featuring a hamburger menu that triggers a modal-based slide-in sidebar.
+- **Cross-Platform Parity**: Used conditional React Native dimension hooks rather than purely relying on CSS media queries to guarantee native-level layout stability and prevent visual regressions inside complex ScrollViews.
 
-When you're ready, run:
+### 5. Local State Persistence
 
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-### Other setup steps
-
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- **AsyncStorage Integration**: To compensate for the lack of a backend database in this scope, all student records, validations, and lifecycle status changes persist flawlessly across sessions using a custom `useAsyncStorage` hook implementation.
