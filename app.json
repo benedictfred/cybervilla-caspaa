@@ -20,6 +20,7 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
+      "name": "Cybervilla Interview Coding Test: CASPAA PROJECT",
       "bundler": "metro",
       "output": "static",
       "favicon": "./assets/images/favicon.png"
